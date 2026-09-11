@@ -9,7 +9,7 @@
       "Description": "3D digitization of the artifact using bidirectional flatbed scanning.",
       "Sources": [
         {
-          "id": "../References/MVA2010/Info.xml"
+          "id": "MVA2010"
         }
       ],
       "Object": {
@@ -27,7 +27,7 @@
       "Description": "3D digitization of the artifact using bidirectional flatbed scanning.",
       "Sources": [
         {
-          "id": "../References/MVA2010/Info.xml"
+          "id": "MVA2010"
         }
       ],
       "Object": {
@@ -45,7 +45,7 @@
       "Description": "3D digitization of the artifact using bidirectional flatbed scanning.",
       "Sources": [
         {
-          "id": "../References/MVA2010/Info.xml"
+          "id": "MVA2010"
         }
       ],
       "Object": {
@@ -63,7 +63,7 @@
       "Description": "3D digitization of the artifact using bidirectional flatbed scanning.",
       "Sources": [
         {
-          "id": "../References/MVA2010/Info.xml"
+          "id": "MVA2010"
         }
       ],
       "Object": {
@@ -82,7 +82,7 @@
       "Depth Range": "60",
       "Sources": [
         {
-          "id": "../References/MVA2010/Info.xml"
+          "id": "MVA2010"
         }
       ],
       "Object": {
@@ -101,7 +101,7 @@
       "Depth Range": "60",
       "Sources": [
         {
-          "id": "../References/MVA2010/Info.xml"
+          "id": "MVA2010"
         }
       ],
       "Object": {
@@ -129,7 +129,7 @@
       "Description": "3D digitization of the artifact using bidirectional flatbed scanning.",
       "Sources": [
         {
-          "id": "../References/MVA2010/Info.xml"
+          "id": "MVA2010"
         }
       ],
       "Object": {
@@ -148,7 +148,7 @@
       "Depth Range": "60",
       "Sources": [
         {
-          "id": "../References/MVA2010/Info.xml"
+          "id": "MVA2010"
         }
       ],
       "Object": {
@@ -167,7 +167,7 @@
       "Depth Range": "60",
       "Sources": [
         {
-          "id": "../References/MVA2010/Info.xml"
+          "id": "MVA2010"
         }
       ],
       "Object": {
@@ -188,7 +188,7 @@
       "Depth Range": "60",
       "Sources": [
         {
-          "id": "../References/MVA2010/Info.xml"
+          "id": "MVA2010"
         }
       ],
       "Object": {
@@ -202,5 +202,15 @@
     }
   },
   "Editors": {},
-  "Sources": {}
+  "Sources": {
+    "MVA2010": {
+      "Author(s)": "A. Barmpoutis, E. Bozia, R. S. Wagman",
+      "Title": "A novel framework for 3D reconstruction and analysis of ancient inscriptions",
+      "Publication": "Journal of Machine Vision and Applications",
+      "Volume": "21",
+      "Number": "6",
+      "Year": "2010",
+      "Pages": "989-998"
+    }
+  }
 }
