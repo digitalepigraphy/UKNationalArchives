@@ -1,0 +1,206 @@
+{
+  "Collection": "UK National Archives - Seal and Lace Digitization",
+  "URL": "https://digitalepigraphy.github.io/UKNationalArchives/",
+  "Records": {
+    "DEA_UKNA_L_01": {
+      "Date": "Jan. 17, 2014",
+      "DPI": "300",
+      "Digitized by": "Rachel Farmer",
+      "Description": "3D digitization of the artifact using bidirectional flatbed scanning.",
+      "Sources": [
+        {
+          "id": "../References/MVA2010/Info.xml"
+        }
+      ],
+      "Object": {
+        "Title": "Lace with flowers",
+        "Description": "Lace with patterns of flowers and leafs.",
+        "Principal Investigator": "Dinah Eastop",
+        "Present location": "U.K. National Archives",
+        "Material": "Lace"
+      }
+    },
+    "DEA_UKNA_L_02": {
+      "Date": "Jan. 17, 2014",
+      "DPI": "300",
+      "Digitized by": "Rachel Farmer",
+      "Description": "3D digitization of the artifact using bidirectional flatbed scanning.",
+      "Sources": [
+        {
+          "id": "../References/MVA2010/Info.xml"
+        }
+      ],
+      "Object": {
+        "Title": "Lace with flowers",
+        "Description": "Lace with patterns of flowers and leafs.",
+        "Principal Investigator": "Dinah Eastop",
+        "Present location": "U.K. National Archives",
+        "Material": "Lace"
+      }
+    },
+    "DEA_UKNA_L_03": {
+      "Date": "Jan. 15, 2014",
+      "DPI": "300",
+      "Digitized by": "Rachel Farmer",
+      "Description": "3D digitization of the artifact using bidirectional flatbed scanning.",
+      "Sources": [
+        {
+          "id": "../References/MVA2010/Info.xml"
+        }
+      ],
+      "Object": {
+        "Title": "Lace with flowers",
+        "Description": "Lace with patterns of flowers and leafs.",
+        "Principal Investigator": "Dinah Eastop",
+        "Present location": "U.K. National Archives",
+        "Material": "Lace"
+      }
+    },
+    "DEA_UKNA_L_04": {
+      "Date": "Jan. 17, 2014",
+      "DPI": "300",
+      "Digitized by": "Rachel Farmer",
+      "Description": "3D digitization of the artifact using bidirectional flatbed scanning.",
+      "Sources": [
+        {
+          "id": "../References/MVA2010/Info.xml"
+        }
+      ],
+      "Object": {
+        "Title": "Lace with flowers",
+        "Description": "Lace with patterns of flowers and leafs.",
+        "Principal Investigator": "Dinah Eastop",
+        "Present location": "U.K. National Archives",
+        "Material": "Lace"
+      }
+    },
+    "DEA_UKNA_S_01": {
+      "Date": "Jan. 16, 2014",
+      "DPI": "300",
+      "Digitized by": "Rachel Farmer",
+      "Description": "3D digitization of the artifact using bidirectional flatbed scanning.",
+      "Depth Range": "60",
+      "Sources": [
+        {
+          "id": "../References/MVA2010/Info.xml"
+        }
+      ],
+      "Object": {
+        "Title": "Wax seal",
+        "Description": "Wax seal depicting a chariot with two horses and two passengers.",
+        "Principal Investigator": "Dinah Eastop",
+        "Present location": "U.K. National Archives",
+        "Material": "Wax"
+      }
+    },
+    "DEA_UKNA_S_02": {
+      "Date": "Jan. 16, 2014",
+      "DPI": "300",
+      "Digitized by": "Rachel Farmer",
+      "Description": "3D digitization of the artifact using bidirectional flatbed scanning.",
+      "Depth Range": "60",
+      "Sources": [
+        {
+          "id": "../References/MVA2010/Info.xml"
+        }
+      ],
+      "Object": {
+        "Title": "Great seal of the United Kingdom",
+        "Year": "1216-1272",
+        "Description": "The seal of Henry III of England. The seal depicts the king robed and crowned, seated on his throne holding a sceptre in his right hand and an orb with a cross in his left. The king is stepping on two small lions, which are visible in front of the lower part of the throne.",
+        "Present location": "U.K. National Archives",
+        "Material": "Wax",
+        "Text": "HENRICVS DEI GRACIA REX ANGLIE DOMINVS HIBERNIE DVX AQUITANIE  ",
+        "Principal Investigator": "Dinah Eastop",
+        "Sources": [
+          {
+            "id": "hdwns73g6bs82ysd"
+          },
+          {
+            "id": "h287dfbc2h783cbg"
+          }
+        ]
+      }
+    },
+    "DEA_UKNA_S_03": {
+      "Date": "Jan. 15, 2014",
+      "DPI": "300",
+      "Digitized by": "Rachel Farmer",
+      "Description": "3D digitization of the artifact using bidirectional flatbed scanning.",
+      "Sources": [
+        {
+          "id": "../References/MVA2010/Info.xml"
+        }
+      ],
+      "Object": {
+        "Title": "Wax seal",
+        "Description": "Wax seal with coat of arms on the bottom and a crowned lion on the top.",
+        "Principal Investigator": "Dinah Eastop",
+        "Present location": "U.K. National Archives",
+        "Material": "Wax"
+      }
+    },
+    "DEA_UKNA_S_04": {
+      "Date": "Jan. 15, 2014",
+      "DPI": "300",
+      "Digitized by": "Rachel Farmer",
+      "Description": "3D digitization of the artifact using bidirectional flatbed scanning.",
+      "Depth Range": "60",
+      "Sources": [
+        {
+          "id": "../References/MVA2010/Info.xml"
+        }
+      ],
+      "Object": {
+        "Title": "Seal",
+        "Description": "Seal with a ship and coat of arms.",
+        "Year": "1583",
+        "Principal Investigator": "Dinah Eastop",
+        "Present location": "U.K. National Archives"
+      }
+    },
+    "DEA_UKNA_S_05": {
+      "Date": "Jan. 16, 2014",
+      "DPI": "300",
+      "Digitized by": "Rachel Farmer",
+      "Description": "3D digitization of the artifact using bidirectional flatbed scanning.",
+      "Depth Range": "60",
+      "Sources": [
+        {
+          "id": "../References/MVA2010/Info.xml"
+        }
+      ],
+      "Object": {
+        "Title": "Seal with coat of arms",
+        "Description": "Wax seal with coat of arms between two lions.",
+        "Principal Investigator": "Dinah Eastop",
+        "Present location": "U.K. National Archives",
+        "Material": "Wax"
+      }
+    },
+    "DEA_UKNA_S_06": {
+      "Date": "Jan. 15, 2014",
+      "DPI": "600",
+      "Width": "1120",
+      "Height": "1120",
+      "Digitized by": "Rachel Farmer",
+      "Description": "3D digitization of the artifact using bidirectional flatbed scanning.",
+      "Depth Range": "60",
+      "Sources": [
+        {
+          "id": "../References/MVA2010/Info.xml"
+        }
+      ],
+      "Object": {
+        "Title": "Seal of Kiel",
+        "Year": "1365",
+        "Description": "The seal of the city of Kiel, Germany. This meddal with the original design of 1365 shows a man at the stern rudder  at the bow of a sailboat.",
+        "Present location": "U.K. National Archives",
+        "Text": "SIGILLVM: CIVIVM: RILB NSIVM",
+        "Principal Investigator": "Dinah Eastop"
+      }
+    }
+  },
+  "Editors": {},
+  "Sources": {}
+}
