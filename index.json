@@ -10,6 +10,9 @@
       "Sources": [
         {
           "id": "MVA2010"
+        },
+        {
+          "id": "ICON2010"
         }
       ],
       "Object": {
@@ -28,6 +31,9 @@
       "Sources": [
         {
           "id": "MVA2010"
+        },
+        {
+          "id": "ICON2010"
         }
       ],
       "Object": {
@@ -46,6 +52,9 @@
       "Sources": [
         {
           "id": "MVA2010"
+        },
+        {
+          "id": "ICON2010"
         }
       ],
       "Object": {
@@ -64,6 +73,9 @@
       "Sources": [
         {
           "id": "MVA2010"
+        },
+        {
+          "id": "ICON2010"
         }
       ],
       "Object": {
@@ -83,6 +95,9 @@
       "Sources": [
         {
           "id": "MVA2010"
+        },
+        {
+          "id": "ICON2010"
         }
       ],
       "Object": {
@@ -102,6 +117,9 @@
       "Sources": [
         {
           "id": "MVA2010"
+        },
+        {
+          "id": "ICON2010"
         }
       ],
       "Object": {
@@ -114,10 +132,10 @@
         "Principal Investigator": "Dinah Eastop",
         "Sources": [
           {
-            "id": "hdwns73g6bs82ysd"
+            "id": "BM1899"
           },
           {
-            "id": "h287dfbc2h783cbg"
+            "id": "NC1908"
           }
         ]
       }
@@ -130,6 +148,9 @@
       "Sources": [
         {
           "id": "MVA2010"
+        },
+        {
+          "id": "ICON2010"
         }
       ],
       "Object": {
@@ -149,6 +170,9 @@
       "Sources": [
         {
           "id": "MVA2010"
+        },
+        {
+          "id": "ICON2010"
         }
       ],
       "Object": {
@@ -168,6 +192,9 @@
       "Sources": [
         {
           "id": "MVA2010"
+        },
+        {
+          "id": "ICON2010"
         }
       ],
       "Object": {
@@ -189,6 +216,9 @@
       "Sources": [
         {
           "id": "MVA2010"
+        },
+        {
+          "id": "ICON2010"
         }
       ],
       "Object": {
@@ -211,6 +241,28 @@
       "Number": "6",
       "Year": "2010",
       "Pages": "989-998"
+    },
+    "ICON2010": {
+      "Author(s)": "R. Gallen, D. Eastop, E. Bozia, A. Barmpoutis",
+      "Title": "Digital imaging: the application of shape-from-shading to lace, seals and metal object",
+      "Publication": "ICON Journal of Conservation",
+      "Volume": "38",
+      "Number": "1",
+      "Year": "2015",
+      "Pages": "41-53"
+    },
+    "BM1988":{
+      "Author(s)": "Herbert A. Grueber",
+      "Title": "Handbook of the coins of Great Britain and Ireland in the British Museum",
+      "Publisher": "The Trustees of the British Museum, London",
+      "Year": "1899"
+    },
+    "NC1908":{
+      "Author(s)": "Spink and Son",
+      "Number": "16",
+      "Title": "Numismatic Circular",
+      "Publisher": "Spink and Son, London",
+      "Year": "1908"
     }
   }
 }
