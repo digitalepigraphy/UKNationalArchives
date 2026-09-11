@@ -712,7 +712,7 @@
     <form role="search" aria-label="Search the collection" id="search-form">
       <div class="search-field">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg>
-        <label for="search-input" class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Search records by place, language, editor, or inscription text</label>
+        <label for="search-input" class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Search records by place, language, editor, or text</label>
         <input
           type="search"
           id="search-input"
@@ -1081,7 +1081,7 @@
       transcriptionNode.setAttribute("lang", obj.Language === "Greek" ? "grc" : (obj.Language === "Latin" ? "la" : ""));
       transcriptionNode.textContent = formatTranscription(obj.Text);
     }
-    infoGrid.appendChild(buildInfoBox("Object", obj.Title || null, objRows, transcriptionNode, true));
+    infoGrid.appendChild(buildInfoBox("Object", obj.Title || null, objRows, transcriptionNode));
 
     wrap.appendChild(infoGrid);
     return wrap;
@@ -1445,7 +1445,7 @@
     var collectionName = json.Collection || "Squeeze Collection";
     els.title.textContent = collectionName;
     document.title = collectionName + " — Search";
-    els.lede.textContent = "Search " + state.records.length + " digitized objects by place, language, editor, or transcribed text.";
+    els.lede.textContent = "Search " + state.records.length + " digitized objects by place, language, editor, or text.";
     if (els.metaDescription) {
       els.metaDescription.setAttribute("content", "Search and browse " + collectionName + ", a digitized epigraphic squeeze collection of " + state.records.length + " records.");
     }
