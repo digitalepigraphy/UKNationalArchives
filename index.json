@@ -12,7 +12,7 @@
           "id": "MVA2010"
         },
         {
-          "id": "ICON2010"
+          "id": "ICON2015"
         }
       ],
       "Object": {
@@ -33,7 +33,7 @@
           "id": "MVA2010"
         },
         {
-          "id": "ICON2010"
+          "id": "ICON2015"
         }
       ],
       "Object": {
@@ -54,7 +54,7 @@
           "id": "MVA2010"
         },
         {
-          "id": "ICON2010"
+          "id": "ICON2015"
         }
       ],
       "Object": {
@@ -75,7 +75,7 @@
           "id": "MVA2010"
         },
         {
-          "id": "ICON2010"
+          "id": "ICON2015"
         }
       ],
       "Object": {
@@ -97,7 +97,7 @@
           "id": "MVA2010"
         },
         {
-          "id": "ICON2010"
+          "id": "ICON2015"
         }
       ],
       "Object": {
@@ -119,7 +119,7 @@
           "id": "MVA2010"
         },
         {
-          "id": "ICON2010"
+          "id": "ICON2015"
         }
       ],
       "Object": {
@@ -150,7 +150,7 @@
           "id": "MVA2010"
         },
         {
-          "id": "ICON2010"
+          "id": "ICON2015"
         }
       ],
       "Object": {
@@ -172,7 +172,7 @@
           "id": "MVA2010"
         },
         {
-          "id": "ICON2010"
+          "id": "ICON2015"
         }
       ],
       "Object": {
@@ -194,7 +194,7 @@
           "id": "MVA2010"
         },
         {
-          "id": "ICON2010"
+          "id": "ICON2015"
         }
       ],
       "Object": {
@@ -218,7 +218,7 @@
           "id": "MVA2010"
         },
         {
-          "id": "ICON2010"
+          "id": "ICON2015"
         }
       ],
       "Object": {
@@ -242,7 +242,7 @@
       "Year": "2010",
       "Pages": "989-998"
     },
-    "ICON2010": {
+    "ICON2015": {
       "Author(s)": "R. Gallen, D. Eastop, E. Bozia, A. Barmpoutis",
       "Title": "Digital imaging: the application of shape-from-shading to lace, seals and metal object",
       "Publication": "ICON Journal of Conservation",
@@ -251,16 +251,16 @@
       "Year": "2015",
       "Pages": "41-53"
     },
-    "BM1899":{
+    "BM1899": {
       "Author(s)": "Herbert A. Grueber",
       "Title": "Handbook of the coins of Great Britain and Ireland in the British Museum",
       "Publisher": "The Trustees of the British Museum, London",
       "Year": "1899"
     },
-    "NC1908":{
+    "NC1908": {
       "Author(s)": "Spink and Son",
-      "Number": "16",
       "Title": "Numismatic Circular",
+      "Volume": "16",
       "Publisher": "Spink and Son, London",
       "Year": "1908"
     }

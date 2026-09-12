@@ -6,6 +6,7 @@
 	<field id="45" value="Rachel Farmer"/>
 	<field id="27" value="3D digitization of the artifact using bidirectional flatbed scanning.">
 		<source id="../References/MVA2010/Info.xml"/>
+		<source id="../References/ICON2015/Info.xml"></source>
 	</field>
 	<field id="49" value="60"/>
 <record_link><neobject_id>_x9kvYJZCCIC8dgmJ</neobject_id></record_link></record>
