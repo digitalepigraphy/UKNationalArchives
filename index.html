@@ -712,12 +712,12 @@
     <form role="search" aria-label="Search the collection" id="search-form">
       <div class="search-field">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg>
-        <label for="search-input" class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Search records by place, language, editor, or text</label>
+        <label for="search-input" class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Search records by place, language, or text</label>
         <input
           type="search"
           id="search-input"
           name="q"
-          placeholder="Search by place, language, editor, text…"
+          placeholder="Search by place, language, text…"
           autocomplete="off"
           aria-describedby="results-meta"
           disabled>
@@ -858,8 +858,9 @@
     var tail = [source.Publication, source.Volume ? ("vol. " + source.Volume) : null, source.Number ? ("no. " + source.Number) : null]
       .filter(Boolean).join(", ");
     var year = source.Year ? " (" + source.Year + ")" : "";
+    var publisher = source.Publisher ? ", " + source.Publisher : "";
     var pages = source.Pages ? ", pp. " + source.Pages : "";
-    return [bits, tail].filter(Boolean).join(" — ") + year + pages || fallback;
+    return [bits, tail].filter(Boolean).join(" — ") + year + publisher + pages || fallback;
   }
 
   function resolveSources(list){
@@ -1456,7 +1457,7 @@
     var collectionName = json.Collection || "Squeeze Collection";
     els.title.textContent = collectionName;
     document.title = collectionName + " — Search";
-    els.lede.textContent = "Search " + state.records.length + " digitized objects by place, language, editor, or text.";
+    els.lede.textContent = "Search " + state.records.length + " digitized objects by place, language, or text.";
     if (els.metaDescription) {
       els.metaDescription.setAttribute("content", "Search and browse " + collectionName + ", a digitized epigraphic squeeze collection of " + state.records.length + " records.");
     }
