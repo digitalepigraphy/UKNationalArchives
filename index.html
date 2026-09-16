@@ -239,29 +239,6 @@
   .clear-btn.is-visible{ display: inline-flex; }
   .clear-btn:hover{ color: var(--accent-2); }
 
-  .filters{
-    display: flex;
-    flex-wrap: wrap;
-    gap: .5rem;
-    justify-content: center;
-    margin-top: 1rem;
-  }
-  .chip{
-    font-family: var(--font-ui);
-    font-size: .82rem;
-    padding: .4rem .9rem;
-    border-radius: 999px;
-    border: 1px solid var(--line-strong);
-    background: var(--surface);
-    color: var(--ink-soft);
-    cursor: pointer;
-  }
-  .chip[aria-pressed="true"]{
-    background: var(--accent);
-    border-color: var(--accent);
-    color: var(--accent-ink);
-  }
-
   /* ---------- results ---------- */
   main{
     max-width: 1180px;
@@ -727,7 +704,6 @@
       </div>
     </form>
 
-    <div class="filters" id="filters" role="group" aria-label="Filter by language" hidden></div>
   </div>
 </header>
 
@@ -764,9 +740,7 @@
     folder: "",
     editorsDict: {},
     sourcesDict: {},
-    records: [],       // [{id, record, searchText, language}]
-    languages: [],
-    activeLanguage: null,
+    records: [],       // [{id, record, searchText}]
     query: "",
     expandedId: null,
     cardRefs: {}        // id -> { article, toggleBtn, panel }
@@ -778,7 +752,6 @@
     eyebrow: document.getElementById("site-eyebrow"),
     input: document.getElementById("search-input"),
     clearBtn: document.getElementById("clear-btn"),
-    filters: document.getElementById("filters"),
     grid: document.getElementById("grid"),
     meta: document.getElementById("results-meta"),
     form: document.getElementById("search-form"),
@@ -952,45 +925,42 @@
     return box;
   }
 
+  // Recursively collect every string/number value found anywhere in obj
+  // (including nested objects and arrays), so search covers all fields.
+  function flattenValues(obj, out){
+    out = out || [];
+    if (obj == null) return out;
+    if (typeof obj === "string" || typeof obj === "number") {
+      out.push(String(obj));
+    } else if (Array.isArray(obj)) {
+      obj.forEach(function(item){ flattenValues(item, out); });
+    } else if (typeof obj === "object") {
+      Object.keys(obj).forEach(function(key){ flattenValues(obj[key], out); });
+    }
+    return out;
+  }
+
   function buildSearchIndex(json){
     var editorsDict = json.Editors || {};
     var records = [];
-    var languageSet = {};
 
     Object.keys(json.Records || {}).forEach(function(id){
       var record = json.Records[id];
-      var squeeze = record.Squeeze || {};
-      var inscription = record.Inscription || {};
 
       var topEditors = resolveEditors(record.Editors, editorsDict);
-      var squeezeEditors = resolveEditors(squeeze.Editors, editorsDict);
+      var squeezeEditors = resolveEditors((record.Squeeze || {}).Editors, editorsDict);
 
-      var parts = [
-        id,
-        record.Description,
-        squeeze.Title,
-        squeeze["Accession ID Number"],
-        squeeze["Present location"],
-        squeeze["Principal Investigator"],
-        squeeze.Material,
-        squeeze.Date,
-        inscription.Title,
-        inscription.Description,
-        inscription.Language,
-        inscription["Present location"],
-        inscription["Modern country"],
-        inscription.Text,
-        topEditors.join(" "),
-        squeezeEditors.join(" ")
-      ].filter(Boolean).join(" ").toLowerCase();
-
-      var lang = inscription.Language || "Unknown";
-      languageSet[lang] = true;
+      var parts = [id]
+        .concat(flattenValues(record))
+        .concat(topEditors)
+        .concat(squeezeEditors)
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
 
       records.push({
         id: id,
         record: record,
-        language: lang,
         searchText: parts
       });
     });
@@ -998,13 +968,11 @@
     records.sort(function(a, b){ return a.id.localeCompare(b.id); });
 
     return {
-      records: records,
-      languages: Object.keys(languageSet).sort()
+      records: records
     };
   }
 
   function matchesQuery(entry, query){
-    if (state.activeLanguage && entry.language !== state.activeLanguage) return false;
     if (!query) return true;
     var terms = query.toLowerCase().trim().split(/\s+/).filter(Boolean);
     return terms.every(function(term){ return entry.searchText.indexOf(term) !== -1; });
@@ -1311,34 +1279,12 @@
     }
 
     var total = state.records.length;
-    if (!query && !state.activeLanguage) {
+    if (!query) {
       els.meta.textContent = "Showing all " + total + " record" + (total === 1 ? "" : "s") + ".";
     } else {
       els.meta.textContent = "Showing " + matches.length + " of " + total + " record" + (total === 1 ? "" : "s") +
-        (query ? " for “" + query + "”" : "") +
-        (state.activeLanguage ? " in " + state.activeLanguage : "") + ".";
+        " for “" + query + "”.";
     }
-  }
-
-  function buildFilters(){
-    if (state.languages.length < 2) return;
-    els.filters.hidden = false;
-    state.languages.forEach(function(lang){
-      var chip = document.createElement("button");
-      chip.type = "button";
-      chip.className = "chip";
-      chip.textContent = lang;
-      chip.setAttribute("aria-pressed", "false");
-      chip.addEventListener("click", function(){
-        var isActive = state.activeLanguage === lang;
-        state.activeLanguage = isActive ? null : lang;
-        Array.prototype.forEach.call(els.filters.children, function(c){
-          c.setAttribute("aria-pressed", String(c === chip && !isActive));
-        });
-        render();
-      });
-      els.filters.appendChild(chip);
-    });
   }
 
   function initSearch(){
@@ -1461,7 +1407,6 @@
 
     var index = buildSearchIndex(json);
     state.records = index.records;
-    state.languages = index.languages;
 
     var collectionName = json.Collection || "Squeeze Collection";
     els.title.textContent = collectionName;
@@ -1481,7 +1426,6 @@
       if (citations.length) els.footerCredit.textContent = "Cite As: " + citations.join(" | ");
     }
 
-    buildFilters();
     initSearch();
     initGrid();
     initLightbox();
