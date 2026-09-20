@@ -445,7 +445,7 @@
     padding: .7rem 1.3rem;
     border-radius: 999px;
   }
-  .viewer-cta svg, .github-cta svg{ width: 16px; height: 16px; flex: none; }
+  .viewer-cta svg, .github-cta svg, .share-cta svg{ width: 16px; height: 16px; flex: none; }
 
   .viewer-cta{
     background: var(--accent);
@@ -460,9 +460,26 @@
     color: var(--ink-soft);
     border: 1px solid var(--line-strong);
   }
-  .github-cta:hover, .github-cta:focus-visible{
+  .github-cta:hover, .github-cta:focus-visible,
+  .share-cta:hover, .share-cta:focus-visible{
     color: var(--ink);
     border-color: var(--accent-2);
+  }
+  .share-cta{
+    all: unset;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    font-family: var(--font-ui);
+    font-weight: 600;
+    font-size: .92rem;
+    padding: .7rem 1.3rem;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--ink-soft);
+    border: 1px solid var(--line-strong);
+    cursor: pointer;
   }
 
   .info-grid{
@@ -593,7 +610,7 @@
   }
   footer a{ color: var(--ink-soft); text-decoration: underline; }
 
-  body.lightbox-open{ overflow: hidden; }
+  body.overlay-open{ overflow: hidden; }
 
   /* ---------- image lightbox ---------- */
   .lightbox{
@@ -655,6 +672,98 @@
   }
   @media (max-width: 480px){
     .lightbox__close{ top: .5rem; right: .5rem; }
+  }
+
+  /* ---------- share dialog ---------- */
+  .share-dialog{
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: rgba(10,8,5,.8);
+  }
+  .share-dialog[hidden]{
+    display: none;
+  }
+  .share-dialog__panel{
+    position: relative;
+    width: 100%;
+    max-width: min(92vw, 480px);
+    background: var(--surface-raised);
+    border-radius: var(--radius-s);
+    padding: 1.6rem 1.5rem 1.5rem;
+    box-shadow: 0 12px 40px rgba(0,0,0,.45);
+    box-sizing: border-box;
+  }
+  .share-dialog__panel h3{
+    margin: 0 0 .9rem;
+    font-family: var(--font-ui);
+    font-size: 1rem;
+    color: var(--ink);
+  }
+  .share-dialog__text{
+    display: block;
+    width: 100%;
+    min-height: 4.5rem;
+    resize: vertical;
+    box-sizing: border-box;
+    font-family: var(--font-ui);
+    font-size: .85rem;
+    padding: .7rem;
+    border-radius: var(--radius-s);
+    border: 1px solid var(--line-strong);
+    background: var(--bg-alt);
+    color: var(--ink);
+  }
+  .share-dialog__copy{
+    all: unset;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    margin-top: 1rem;
+    font-family: var(--font-ui);
+    font-weight: 600;
+    font-size: .9rem;
+    padding: .65rem 1.2rem;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    cursor: pointer;
+  }
+  .share-dialog__copy:hover, .share-dialog__copy:focus-visible{
+    background: var(--accent-2);
+  }
+  .share-dialog__status{
+    margin: .6rem 0 0;
+    font-family: var(--font-ui);
+    font-size: .8rem;
+    color: var(--ink-soft);
+    min-height: 1.1em;
+  }
+  .share-dialog__close{
+    all: unset;
+    box-sizing: border-box;
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface-raised);
+    color: var(--ink);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,.4);
+  }
+  .share-dialog__close svg{ width: 18px; height: 18px; }
+  .share-dialog__close:hover, .share-dialog__close:focus-visible{
+    color: var(--accent-2);
   }
 
   @media (max-width: 480px){
@@ -730,6 +839,21 @@
   </div>
 </div>
 
+<div id="share-dialog" class="share-dialog" role="dialog" aria-modal="true" aria-labelledby="share-dialog-title" hidden>
+  <div class="share-dialog__panel">
+    <button type="button" class="share-dialog__close" id="share-dialog-close" aria-label="Close share dialog">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+    </button>
+    <h3 id="share-dialog-title">Share it as</h3>
+    <textarea class="share-dialog__text" id="share-dialog-text" rows="3" readonly></textarea>
+    <button type="button" class="share-dialog__copy" id="share-dialog-copy">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"></rect><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"></path></svg>
+      <span>Copy</span>
+    </button>
+    <p class="share-dialog__status" id="share-dialog-status" role="status" aria-live="polite"></p>
+  </div>
+</div>
+
 <script>
 (function(){
   "use strict";
@@ -762,7 +886,12 @@
     lightbox: document.getElementById("lightbox"),
     lightboxImg: document.getElementById("lightbox-img"),
     lightboxCaption: document.getElementById("lightbox-caption"),
-    lightboxClose: document.getElementById("lightbox-close")
+    lightboxClose: document.getElementById("lightbox-close"),
+    shareDialog: document.getElementById("share-dialog"),
+    shareDialogClose: document.getElementById("share-dialog-close"),
+    shareText: document.getElementById("share-dialog-text"),
+    shareCopy: document.getElementById("share-dialog-copy"),
+    shareStatus: document.getElementById("share-dialog-status")
   };
 
   /* ---------------- theme ---------------- */
@@ -889,7 +1018,8 @@
   }
 
   // Every remaining top-level field of an object, in JSON key order, skipping
-  // any keys already surfaced elsewhere (Title, Text, Editors, Sources, nested objects).
+  // any keys already surfaced elsewhere (Title, Text, Editors, Sources, nested objects)
+  // and OCR, which is indexed for search (see flattenValues) but never displayed.
   function genericRows(obj, skipKeys){
     var skip = skipKeys || [];
     return Object.keys(obj || {})
@@ -1016,6 +1146,20 @@
     return a;
   }
 
+  function buildShareButton(entry){
+    var button = document.createElement("button");
+    button.type = "button";
+    button.className = "share-cta";
+    var svg = "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><circle cx=\"18\" cy=\"5\" r=\"3\"></circle><circle cx=\"6\" cy=\"12\" r=\"3\"></circle><circle cx=\"18\" cy=\"19\" r=\"3\"></circle><path d=\"M8.6 10.5l6.8-3.9M8.6 13.5l6.8 3.9\"></path></svg>";
+    button.innerHTML = svg;
+    var label = document.createElement("span");
+    label.textContent = "Share";
+    button.appendChild(label);
+    button.setAttribute("aria-label", "Share record " + entry.id);
+    button.addEventListener("click", function(){ openShareDialog(entry); });
+    return button;
+  }
+
   // Build the detail panel: the record's own fields, then (if present) the
   // Squeeze/Object fields led by its Title, then (if present) the Inscription
   // fields led by its Title, with the transcribed text formatted underneath.
@@ -1036,25 +1180,26 @@
     actions.className = "card__panel-actions";
     actions.appendChild(buildViewerLink(entry));
     actions.appendChild(buildGithubLink(entry));
+    actions.appendChild(buildShareButton(entry));
     wrap.appendChild(actions);
 
     var infoGrid = document.createElement("div");
     infoGrid.className = "info-grid";
 
-    var recordRows = genericRows(record, ["Squeeze", "Object", "Inscription", "Editors", "Sources"]);
+    var recordRows = genericRows(record, ["Squeeze", "Object", "Inscription", "Editors", "Sources", "OCR"]);
     recordRows.push({ label: "Editors", value: resolveEditors(record.Editors, state.editorsDict) });
     recordRows.push({ label: "Sources", value: resolveSources(record.Sources) });
     infoGrid.appendChild(buildInfoBox("Imaging", entry.id, recordRows));
 
     if (squeeze) {
-      var squeezeRows = genericRows(squeeze, ["Title", "Editors", "Sources"]);
+      var squeezeRows = genericRows(squeeze, ["Title", "Editors", "Sources", "OCR"]);
       squeezeRows.push({ label: "Editors", value: resolveEditors(squeeze.Editors, state.editorsDict) });
       squeezeRows.push({ label: "Sources", value: resolveSources(squeeze.Sources) });
       infoGrid.appendChild(buildInfoBox(hasObject ? "Object" : "Squeeze", squeeze.Title || null, squeezeRows));
     }
 
     if (inscription) {
-      var inscriptionRows = genericRows(inscription, ["Title", "Text", "Editors", "Sources"]);
+      var inscriptionRows = genericRows(inscription, ["Title", "Text", "Editors", "Sources", "OCR"]);
       if (Array.isArray(inscription.Editors)) {
         inscriptionRows.push({ label: "Editors", value: resolveEditors(inscription.Editors, state.editorsDict) });
       }
@@ -1285,6 +1430,8 @@
       els.meta.textContent = "Showing " + matches.length + " of " + total + " record" + (total === 1 ? "" : "s") +
         " for “" + query + "”.";
     }
+
+    return matches;
   }
 
   function initSearch(){
@@ -1319,14 +1466,14 @@
     els.lightboxImg.alt = refs.mediaImg.alt;
     els.lightboxCaption.textContent = refs.entry.id + (refs.title ? " — " + refs.title : "");
     els.lightbox.hidden = false;
-    document.body.classList.add("lightbox-open");
+    document.body.classList.add("overlay-open");
     els.lightboxClose.focus({ preventScroll: true });
   }
 
   function closeLightbox(){
     if (!els.lightbox || els.lightbox.hidden) return;
     els.lightbox.hidden = true;
-    document.body.classList.remove("lightbox-open");
+    document.body.classList.remove("overlay-open");
     els.lightboxImg.src = "";
     if (lightboxLastFocused && typeof lightboxLastFocused.focus === "function") {
       lightboxLastFocused.focus({ preventScroll: true });
@@ -1342,6 +1489,69 @@
     });
     window.addEventListener("keydown", function(e){
       if (e.key === "Escape" && !els.lightbox.hidden) closeLightbox();
+    });
+  }
+
+  function buildShareText(entry){
+    var collectionName = (state.data && state.data.Collection) || "";
+    var base = state.baseUrl || "";
+    var separator = base.indexOf("?") === -1 ? "?" : "&";
+    var link = base + separator + "q=" + encodeURIComponent(entry.id);
+    return [entry.id, collectionName, "Digital Epigraphy Archive", link]
+      .filter(Boolean)
+      .join(", ");
+  }
+
+  var shareLastFocused = null;
+
+  function openShareDialog(entry){
+    if (!els.shareDialog || !els.shareText) return;
+    shareLastFocused = document.activeElement;
+    els.shareText.value = buildShareText(entry);
+    els.shareStatus.textContent = "";
+    els.shareDialog.hidden = false;
+    document.body.classList.add("overlay-open");
+    els.shareText.focus({ preventScroll: true });
+    els.shareText.select();
+  }
+
+  function closeShareDialog(){
+    if (!els.shareDialog || els.shareDialog.hidden) return;
+    els.shareDialog.hidden = true;
+    document.body.classList.remove("overlay-open");
+    if (shareLastFocused && typeof shareLastFocused.focus === "function") {
+      shareLastFocused.focus({ preventScroll: true });
+    }
+    shareLastFocused = null;
+  }
+
+  function initShareDialog(){
+    if (!els.shareDialog) return;
+    els.shareDialogClose.addEventListener("click", closeShareDialog);
+    els.shareDialog.addEventListener("click", function(e){
+      if (e.target === els.shareDialog) closeShareDialog();
+    });
+    window.addEventListener("keydown", function(e){
+      if (e.key === "Escape" && !els.shareDialog.hidden) closeShareDialog();
+    });
+    els.shareCopy.addEventListener("click", function(){
+      var text = els.shareText.value;
+      function reportResult(ok){
+        els.shareStatus.textContent = ok
+          ? "Copied to clipboard."
+          : "Couldn't copy automatically — the text above is selected, copy it with Ctrl/Cmd+C.";
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function(){ reportResult(true); }, function(){
+          els.shareText.select();
+          reportResult(false);
+        });
+      } else {
+        els.shareText.select();
+        var copied = false;
+        try { copied = document.execCommand("copy"); } catch (err) { copied = false; }
+        reportResult(copied);
+      }
     });
   }
 
@@ -1429,10 +1639,18 @@
     initSearch();
     initGrid();
     initLightbox();
+    initShareDialog();
     var initialQuery = new URLSearchParams(window.location.search).get("q");
     if (initialQuery) {
       els.input.value = initialQuery;
-      els.input.dispatchEvent(new Event("input"));
+      state.query = initialQuery;
+      els.clearBtn.classList.toggle("is-visible", state.query.length > 0);
+      var initialMatches = render();
+      // A ?q= link that pins down exactly one record (e.g. from the Share
+      // dialog) opens straight into that record's expanded detail view.
+      if (initialMatches.length === 1) {
+        toggleCard(initialMatches[0].id);
+      }
     } else {
       render();
     }
